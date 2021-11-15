@@ -6,6 +6,8 @@ import { PageLoading } from "../../components/PageLoading";
 import { Checkboxes } from "../../components/Checkboxes";
 import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { api } from "../../service/api";
 
 type ProductObject = {
   name: string;
@@ -15,28 +17,40 @@ type ProductObject = {
   details: string;
   minimum_bid: number;
   last_bid: number;
-  available_until: Date;
+  available_until: number;
 };
 
 export const Product = () => {
   const { id } = useParams();
+  const { user } = useAuth();
   const [product, setProduct] = useState<ProductObject | null>(null);
+  const [until, setUntil] = useState("");
+
+  const timeConvert = (num: number) => {
+    const hours = Math.floor((Math.abs(num) / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((Math.abs(num) / (1000 * 60)) % 60);
+    const seconds = Math.floor((Math.abs(num) / 1000) % 60);
+    return `${hours}:${minutes > 10 ? minutes : `0${minutes}`}:${
+      seconds > 10 ? seconds : `0${seconds}`
+    }`;
+  };
 
   useEffect(() => {
-    console.log(id);
-    setProduct({
-      id: "1",
-      minimum_bid: 10,
-      last_bid: 15,
-      available_until: new Date("2021-11-15"),
-      image_url: "https://picsum.photos/300/500?random=1",
-      name: "Product 1",
-      description:
-        "Sunt ad nisi anim dolor et ex pariatur tempor deserunt ipsum ad. Non sit do pariatur nulla ipsum tempor cillum id ullamco voluptate nulla. Laboris elit mollit id dolore adipisicing occaecat consequat amet. Aute tempor ex eiusmod do dolor elit incididunt eu ea.",
-      details:
-        "Laboris eiusmod anim excepteur eu enim Lorem dolor id sunt non ea pariatur non. Officia incididunt ea cillum qui dolore irure dolor veniam sint esse. Qui quis ullamco amet reprehenderit tempor est. Deserunt occaecat pariatur velit ut aliquip eu officia proident. Amet minim quis nulla dolore laborum veniam consequat est velit laboris eiusmod deserunt sunt. Proident ipsum in aliqua proident ad esse consectetur dolor sint velit duis deserunt. Qui id dolor laboris fugiat eu ea.",
-    });
-  }, [id]);
+    let secondsInterval: NodeJS.Timeout;
+    if (user) {
+      api.get<{ product: ProductObject }>(`products/${id}`).then(({ data: { product } }) => {
+        setProduct(product);
+        secondsInterval = setInterval(() => {
+          const now = Date.now();
+          const diff = timeConvert(product.available_until - now);
+          setUntil(diff);
+        }, 1000);
+      });
+    }
+    return () => {
+      clearInterval(secondsInterval);
+    };
+  }, [id, user]);
 
   return (
     <Layout>
@@ -62,7 +76,7 @@ export const Product = () => {
               </div>
               <div>
                 <p>Available Until</p>
-                <h4>{product.available_until.getDate()}</h4>
+                <h4>{until}</h4>
               </div>
             </div>
             <Button>Place a Bid</Button>

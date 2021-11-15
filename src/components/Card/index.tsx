@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../Button";
 import styles from "./styles.module.scss";
 
@@ -21,7 +22,9 @@ export const Card = ({ product }: CardProps) => {
           <h4>{product.name}</h4>
           <p>{product.description}</p>
         </div>
-        <Button>Bid now</Button>
+        <Link to={`/product/${product.id}`}>
+          <Button>Bid now</Button>
+        </Link>
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ export const Input = ({ id, label, labelPosition = "left", ...rest }: InputProps
       <input
         {...rest}
         id={id}
-        className={`${styles.Input} ${!!labelPosition && styles[`Input--${labelPosition}`]}`}
+        className={`${styles.Input} ${!!label && styles[`Input--${labelPosition}`]}`}
       />
     </div>
   );
