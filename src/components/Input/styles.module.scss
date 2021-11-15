@@ -12,5 +12,33 @@
     font-size: 1.375rem;
     padding: 0 0.5rem;
     border-radius: 8px;
+
+    &--left {
+      padding: 0 0.5rem 0 4rem;
+    }
+
+    &--right {
+      padding: 0 4rem 0 0.5rem;
+    }
+  }
+
+  input[type="number"] {
+    text-align: center;
+  }
+
+  label {
+    position: absolute;
+    font-size: 1.375rem;
+    color: var(--black-100);
+    font-weight: 900;
+    top: 0.5rem;
+  }
+
+  .label--left {
+    left: 2rem;
+  }
+
+  .label--right {
+    right: 2rem;
   }
 }

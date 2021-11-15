@@ -6,10 +6,14 @@ type InputProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLI
   labelPosition?: "right" | "left";
 };
 
-export const Input = ({ id, label, labelPosition, ...rest }: InputProps) => {
+export const Input = ({ id, label, labelPosition = "left", ...rest }: InputProps) => {
   return (
     <div className={styles.Input__wrapper}>
-      {!!label && <label htmlFor={id}>{label}</label>}
+      {!!label && (
+        <label className={styles[`label--${labelPosition}`]} htmlFor={id}>
+          {label}
+        </label>
+      )}
       <input
         {...rest}
         id={id}
