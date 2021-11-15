@@ -1,0 +1,16 @@
+.Select__wrapper {
+  position: relative;
+  width: 100%;
+  height: 2.5rem;
+
+  .Select {
+    border: none;
+    background-color: var(--white-800);
+    color: var(--black-100);
+    height: 100%;
+    width: 100%;
+    font-size: 1.375rem;
+    padding: 0 0.5rem;
+    border-radius: 8px;
+  }
+}
