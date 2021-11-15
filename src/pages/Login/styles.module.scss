@@ -1,0 +1,28 @@
+.login_main {
+  background-color: var(--white-500);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .login__inputs {
+    padding: 20px;
+    max-width: 25rem;
+    border-radius: 17px;
+    background-color: var(--white-100);
+    border: 2.5px solid var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    div + div {
+      margin-top: 1.25rem;
+    }
+
+    button {
+      margin-top: 1.25rem;
+    }
+  }
+}
