@@ -1,0 +1,40 @@
+.Config {
+  padding: 2rem;
+
+  span {
+    font-size: 0.725rem;
+    color: var(--white-600);
+    font-weight: 900;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+    color: var(--black-100);
+    margin-bottom: 4rem;
+    font-weight: 900;
+  }
+
+  h4 {
+    font-size: 2rem;
+    color: var(--black-100);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  div {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+    max-width: 15rem;
+  }
+
+  button {
+    width: 25rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+  }
+}

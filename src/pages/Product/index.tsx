@@ -5,6 +5,7 @@ import { Layout } from "../../components/Layout";
 import { PageLoading } from "../../components/PageLoading";
 import { Checkboxes } from "../../components/Checkboxes";
 import styles from "./styles.module.scss";
+import { Link } from "react-router-dom";
 
 type ProductObject = {
   name: string;
@@ -75,7 +76,9 @@ export const Product = () => {
                   },
                 ]}
               />
-              <label htmlFor='activate_auto_bidding'>Activate the auto-bidding</label>
+              <label htmlFor='activate_auto_bidding'>
+                Activate the <Link to='/settings'>auto-bidding</Link>
+              </label>
             </div>
           </div>
         </div>
