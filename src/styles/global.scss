@@ -1,0 +1,168 @@
+:root {
+  --white: #fff;
+  --white-100: #fafafa;
+  --white-200: #e2e2e2;
+  --white-300: #dbdbdb;
+  --white-400: #d0d0d0;
+  --white-500: #cecece;
+  --white-600: #b6b6b6;
+  --white-700: #aaaaaa;
+  --white-800: #979797;
+  --white-900: #8c8c8c;
+  --black: #000000;
+  --black-100: #0a0a0a;
+  --black-200: #1e1e1e;
+  --black-300: #2a2a2a;
+  --black-400: #3b3b3b;
+  --black-500: #484848;
+  --black-600: #535353;
+  --black-700: #686868;
+  --black-800: #777;
+  --black-900: #7c7c7c;
+}
+
+body {
+  @media (min-width: 1441px) {
+    font-size: 16px;
+  }
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    font-size: 15px;
+  }
+  @media (max-width: 1024px) {
+    font-size: 14px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
