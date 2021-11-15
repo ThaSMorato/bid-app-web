@@ -1,0 +1,21 @@
+.Button {
+  padding: 0.525rem 1.225rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.375rem;
+
+  &:hover:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &--white-500 {
+    border: 2px solid var(--white-500);
+    background-color: var(--white-500);
+    color: var(--white);
+
+    &:hover {
+      color: var(--white-500);
+      background-color: var(--white);
+    }
+  }
+}
