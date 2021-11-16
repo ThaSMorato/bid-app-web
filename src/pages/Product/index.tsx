@@ -67,6 +67,16 @@ export const Product = () => {
     }
   };
 
+  const handleToggleAutobid = async () => {
+    try {
+      await api.patch(`/user/autobid`, {
+        product_id: id,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Layout>
       {product === null ? (
@@ -103,7 +113,10 @@ export const Product = () => {
             <Button onClick={handleNewBid}>Place a Bid</Button>
             <div className={styles.details__autobidding}>
               <Checkboxes
-                stateFunction={(state) => console.log(state)}
+                state={
+                  user?.products_on_autobid.includes(id as string) ? ["activate_auto_bidding"] : []
+                }
+                stateFunction={handleToggleAutobid}
                 options={[
                   {
                     label: "",

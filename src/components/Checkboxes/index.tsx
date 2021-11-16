@@ -9,10 +9,11 @@ type Option = {
 type InputProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
   options: Option[];
   stateFunction: (state: string[]) => void;
+  state?: string[];
 };
 
-export const Checkboxes = ({ options, stateFunction, ...rest }: InputProps) => {
-  const [checkboxState, setCheckboxState] = useState<string[]>([]);
+export const Checkboxes = ({ state = [], options, stateFunction, ...rest }: InputProps) => {
+  const [checkboxState, setCheckboxState] = useState<string[]>(state);
 
   const handleCheckboxesState = (option: Option) => {
     let newCheckboxState;

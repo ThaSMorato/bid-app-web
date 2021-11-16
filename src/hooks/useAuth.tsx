@@ -13,6 +13,7 @@ type User = {
   role: string;
   maximum_bid_amount: number;
   bid_alert_at: number;
+  products_on_autobid: string[];
 };
 
 type AuthContextData = {
