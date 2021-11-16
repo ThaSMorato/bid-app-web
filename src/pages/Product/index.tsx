@@ -8,6 +8,7 @@ import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { api } from "../../service/api";
+import { Input } from "../../components/Input";
 
 type ProductObject = {
   name: string;
@@ -25,6 +26,7 @@ export const Product = () => {
   const { user } = useAuth();
   const [product, setProduct] = useState<ProductObject | null>(null);
   const [until, setUntil] = useState("");
+  const [bid, setBid] = useState(0);
 
   const timeConvert = (num: number) => {
     const hours = Math.floor((Math.abs(num) / (1000 * 60 * 60)) % 24);
@@ -40,6 +42,7 @@ export const Product = () => {
     if (user) {
       api.get<{ product: ProductObject }>(`products/${id}`).then(({ data: { product } }) => {
         setProduct(product);
+        setBid(product.last_bid + 1);
         secondsInterval = setInterval(() => {
           const now = Date.now();
           const diff = timeConvert(product.available_until - now);
@@ -51,6 +54,18 @@ export const Product = () => {
       clearInterval(secondsInterval);
     };
   }, [id, user]);
+
+  const handleNewBid = async () => {
+    try {
+      await api.patch(`products/${id}/bid`, {
+        amount: bid,
+      });
+
+      setProduct((lastProd) => ({ ...lastProd, last_bid: bid } as ProductObject));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Layout>
@@ -79,7 +94,13 @@ export const Product = () => {
                 <h4>{until}</h4>
               </div>
             </div>
-            <Button>Place a Bid</Button>
+            <Input
+              type='number'
+              min={product.last_bid + 1}
+              value={bid}
+              onChange={(e) => setBid(e.currentTarget.valueAsNumber)}
+            />
+            <Button onClick={handleNewBid}>Place a Bid</Button>
             <div className={styles.details__autobidding}>
               <Checkboxes
                 stateFunction={(state) => console.log(state)}
